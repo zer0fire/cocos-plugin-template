@@ -1,3 +1,10 @@
+# Cocos Creator 代码模板
+
+分别对应三种功能
+* 对已有插件的修改和新增功能
+* 新建新插件
+* 新建 Cocos3.x 新插件
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
