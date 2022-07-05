@@ -16,13 +16,15 @@ function mainRender () {
 }
 
 let intervalId = setInterval(() => {
-  clearInterval(intervalId);
+  
   if (typeof Editor !== "undefined" && typeof require !== "undefined") {
     import("./App").then(({ default: App }) => {
       Editor.Ipc.sendToAll("plugin-ready");
+      clearInterval(intervalId);
       mainRender()
     });
-  } else {
+  } else if (globalThis) {
+    clearInterval(intervalId);
     mainRender()
   }
 });
