@@ -23,7 +23,7 @@ let intervalId = setInterval(() => {
       clearInterval(intervalId);
       mainRender()
     });
-  } else if (globalThis) {
+  } else if (window.globalThis) {
     clearInterval(intervalId);
     mainRender()
   }
