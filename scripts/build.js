@@ -107,6 +107,11 @@ checkBrowsers(paths.appPath, isInteractive)
         buildFolder,
         useYarn
       );
+      fs.copySync(
+        paths.appBuild,
+        path.join(panelPath, require(paths.appPackageJson).name),
+        { overwrite: true, dereference: true }
+      )
     },
     err => {
       const tscCompileOnError = process.env.TSC_COMPILE_ON_ERROR === 'true';
