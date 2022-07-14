@@ -21,6 +21,25 @@ const publicUrlOrPath = getPublicUrlOrPath(
   process.env.PUBLIC_URL
 );
 
+function getCocosPath() {
+  const HOME = process.platform === 'darwin'
+      ? process.env.HOME
+      : process.env.USERPROFILE
+
+  if (!HOME) {
+      if (process.platform === 'darwin') {
+          throw new Error('不存在 HOME 环境变量')
+      } else {
+          throw new Error('不存在 USERPROFILE 环境变量')
+      }
+  }
+  return path.join(HOME, '.CocosCreator')
+}
+const cocosPath = getCocosPath()
+const assembleHelperPath = path.join(cocosPath, '/packages/assemble-helper')
+const srcDirPath = path.join(assembleHelperPath, '/src')
+const panelPath = path.join(srcDirPath, '/panels')
+
 const buildPath = process.env.BUILD_PATH || 'build';
 
 const moduleFileExtensions = [
@@ -70,6 +89,8 @@ module.exports = {
   appTsBuildInfoFile: resolveApp('node_modules/.cache/tsconfig.tsbuildinfo'),
   swSrc: resolveModule(resolveApp, 'src/service-worker'),
   publicUrlOrPath,
+  cocosPath,
+  panelPath
 };
 
 
